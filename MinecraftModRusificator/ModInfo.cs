@@ -93,11 +93,14 @@ public class ModInfo
             var fileInfo = new FileInfo(englishLanguage);
             var directoryFiles = Directory.GetFiles(fileInfo.Directory!.FullName);
             if(!directoryFiles.Any(x => x.Contains("ru_ru.json")))
+            {
                 res.Add(new FilesModel
                 {
                     EnglishLanguage = englishLanguage,
                 });
-            
+                continue;
+            }
+
             var ruFile = directoryFiles.First(x => x.Contains("ru_ru.json"));
             var json = File.ReadAllText(ruFile);
             try
